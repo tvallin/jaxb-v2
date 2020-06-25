@@ -60,6 +60,7 @@ import com.sun.tools.xjc.model.CNonElement;
 import com.sun.tools.xjc.model.CTypeInfo;
 import com.sun.tools.xjc.model.Model;
 import com.sun.tools.xjc.model.TypeUse;
+import com.sun.tools.xjc.reader.Ring;
 import com.sun.xml.bind.api.impl.NameConverter;
 
 import com.sun.tools.rngom.digested.DChoicePattern;
@@ -120,7 +121,10 @@ public final class RELAXNGCompiler {
 
     public static Model build(DPattern grammar, JCodeModel codeModel, Options opts ) {
         RELAXNGCompiler compiler = new RELAXNGCompiler(grammar, codeModel, opts);
+        Ring ring = Ring.begin();
+        Ring.add(compiler.model);
         compiler.compile();
+        Ring.end(ring);
         return compiler.model;
     }
 

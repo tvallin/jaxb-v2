@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+         jaxb:version="1.0">
+
+    <jaxb:schemaBindings>
+        <jaxb:package name="formula"/>
+    </jaxb:schemaBindings>
+
+    <start>
+        <element name="add">
+            <element name="neg">
+                <ref name="number"/>
+            </element>
+            <element name="sub">
+                <oneOrMore>
+                    <ref name="number"/>
+                </oneOrMore>
+            </element>
+        </element>
+    </start>
+    <define name="number">
+        <element name="number">
+            <data type="integer"/>
+        </element>
+    </define>
+</grammar>
