@@ -628,6 +628,14 @@ public class Options {
             schemaLanguage = Language.XMLSCHEMA;
             return 1;
         }
+        if (args[i].equals("-relaxng")) {
+            schemaLanguage = Language.RELAXNG;
+            return 1;
+        }
+        if (args[i].equals("-relaxng-compact")) {
+            schemaLanguage = Language.RELAXNG_COMPACT;
+            return 1;
+        }
         if (args[i].equals("-wsdl")) {
             schemaLanguage = Language.WSDL;
             return 1;
@@ -936,6 +944,10 @@ public class Options {
         if ((grammars != null) && (grammars.size() > 0)) {
             String name = grammars.get(0).getSystemId().toLowerCase();
 
+            if (name.endsWith(".rng"))
+                return Language.RELAXNG;
+            if (name.endsWith(".rnc"))
+                return Language.RELAXNG_COMPACT;
             if (name.endsWith(".dtd"))
                 return Language.DTD;
             if (name.endsWith(".wsdl"))

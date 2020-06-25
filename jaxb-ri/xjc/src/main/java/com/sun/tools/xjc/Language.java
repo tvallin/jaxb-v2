@@ -46,5 +46,7 @@ package com.sun.tools.xjc;
 public enum Language {
     DTD,
     XMLSCHEMA,
+    RELAXNG,
+    RELAXNG_COMPACT,
     WSDL
 }
